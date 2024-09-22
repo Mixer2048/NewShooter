@@ -7,11 +7,17 @@ public class Shooting : MonoBehaviour
     [SerializeField, Range(0.1f, 30f)] private float _shootDelay = 5f;
     [SerializeField, Range(1, 100)] private int _ammoAmount = 30;
 
+    Animator _animator;
+
+
     private int _currentAmmoAmount;
     private float _timeBetweenShoots = 0f;
 
-    private void Start() => _currentAmmoAmount = _ammoAmount;
-
+    private void Start()
+    {
+        _currentAmmoAmount = _ammoAmount;
+        _animator = GetComponent<Animator>();
+    }
     private void Update()
     {
         _timeBetweenShoots -= Time.deltaTime;
