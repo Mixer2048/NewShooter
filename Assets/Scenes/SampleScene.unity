@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582326022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae04db746da06f9469f4d52efcdde9ae, type: 3}
   m_Name: 
@@ -5188,6 +5188,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 0e2f4852e0b389746a89f6ff31b49486, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1816552358}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 0e2f4852e0b389746a89f6ff31b49486, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1816552361}
   m_SourcePrefab: {fileID: 100100000, guid: 0e2f4852e0b389746a89f6ff31b49486, type: 3}
 --- !u!1001 &1688877188
 PrefabInstance:
@@ -5277,6 +5280,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1816552361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816552351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae04db746da06f9469f4d52efcdde9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAmmoAmountChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 332057808}
+        m_TargetAssemblyTypeName: AmmoCountChanger, Assembly-CSharp
+        m_MethodName: ChangeAmmoAmount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _mainCamera: {fileID: 963194227}
+  _impulse: 2.4
+  _shootDelay: 0.2
+  _maxAmmoAmount: 30
 --- !u!1 &1893565256
 GameObject:
   m_ObjectHideFlags: 0
