@@ -41,7 +41,7 @@ public class Shooting : MonoBehaviour
 
         if (_timeBetweenShoots < 0)
         {
-            _animator.SetBool("ShotCheck", false);
+            //_animator.SetBool("ShotCheck", false);
             if (Input.GetMouseButton(0) && _currentAmmoAmount > 0)
                 Shot();
         }
