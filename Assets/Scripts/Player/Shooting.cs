@@ -10,19 +10,41 @@ public class Shooting : MonoBehaviour
     [SerializeField, Range(0.1f, 30f)] private float _shootDelay = 5f;
     [SerializeField, Range(1, 100)] private int _maxAmmoAmount = 30;
 
+    //[SerializeField] private AnimationClip ReloadClip;
+    //private float ClipDuration;
+    //float timeBetweenReloads;
+
+    Animator _animator;
+
     private int _currentAmmoAmount;
     private float _timeBetweenShoots = 0f;
 
-    private void Start() => _currentAmmoAmount = _maxAmmoAmount;
+    private void Start()
+    {
+        _currentAmmoAmount = _maxAmmoAmount;
+        _animator = GetComponent<Animator>();
+        //ClipDuration = ReloadClip.length;
+        //timeBetweenReloads = ClipDuration;
+    }
 
     private void Update()
     {
         int previousAmmoAmount = _currentAmmoAmount;
 
         _timeBetweenShoots -= Time.deltaTime;
+        //timeBetweenReloads -= Time.deltaTime;
+        //if (timeBetweenReloads < 0)
+        //{
+           // _animator.SetBool("PressReload", false);
+            //timeBetweenReloads = ClipDuration;
+        //}
 
-        if (Input.GetMouseButton(0) && _timeBetweenShoots < 0 && _currentAmmoAmount > 0)
-            Shot();
+        if (_timeBetweenShoots < 0)
+        {
+            //_animator.SetBool("ShotCheck", false);
+            if (Input.GetMouseButton(0) && _currentAmmoAmount > 0)
+                Shot();
+        }
 
         if (Input.GetKeyDown(KeyCode.R) && _currentAmmoAmount < _maxAmmoAmount)
             Reload();
@@ -49,10 +71,13 @@ public class Shooting : MonoBehaviour
 
         _currentAmmoAmount--;
         _timeBetweenShoots = _shootDelay;
+        //_animator.SetBool("ShotCheck", true);
     }
 
     private void Reload()
     {
         _currentAmmoAmount = _maxAmmoAmount;
+        //_animator.SetBool("PressReload", true);
+        
     }
 }
