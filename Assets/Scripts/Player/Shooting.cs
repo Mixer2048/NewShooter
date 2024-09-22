@@ -25,9 +25,9 @@ public class Shooting : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Target"))
                     hit.transform.GetComponent<TargetHit>().targetHit(transform.position, hit.point, _impulse);
-
+                Debug.Log(hit.transform);
                 ImpactEffect impactEffect = hit.transform.GetComponent<ImpactEffect>();
-
+                Debug.Log(impactEffect);
                 if (impactEffect != null)
                     impactEffect.play(hit.point, hit.normal);
             }
