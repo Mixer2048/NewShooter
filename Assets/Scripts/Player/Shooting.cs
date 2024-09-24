@@ -19,6 +19,12 @@ public class Shooting : MonoBehaviour
     private int _currentAmmoAmount;
     private float _timeBetweenShoots = 0f;
 
+    private bool reloading = false;
+    private bool shooting = false;
+
+    public ShotAnimation shotAnimation;
+    public GunReloading gunReloading;
+
     private void Start()
     {
         _currentAmmoAmount = _maxAmmoAmount;
@@ -42,19 +48,26 @@ public class Shooting : MonoBehaviour
         if (_timeBetweenShoots < 0)
         {
             //_animator.SetBool("ShotCheck", false);
-            if (Input.GetMouseButton(0) && _currentAmmoAmount > 0)
+            if (Input.GetMouseButton(0) && _currentAmmoAmount > 0 && reloading == false && shooting == false)
                 Shot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && _currentAmmoAmount < _maxAmmoAmount)
-            Reload();
+        if (Input.GetKeyDown(KeyCode.R) && _currentAmmoAmount < _maxAmmoAmount && reloading == false)
+            reloadStart();
 
+        //Debug.Log(previousAmmoAmount != _currentAmmoAmount);
         if (previousAmmoAmount != _currentAmmoAmount)
+        {
             OnAmmoAmountChanged?.Invoke(_currentAmmoAmount, _maxAmmoAmount);
+            //Debug.Log("AmmoChanged");
+        }
+        //Debug.Log(_currentAmmoAmount + " " + previousAmmoAmount);
     }
 
     private void Shot()
     {
+        shooting = true;
+        shotAnimation.play();
         Ray ray = new Ray(_mainCamera.transform.position, _mainCamera.transform.forward);
         RaycastHit hit;
 
@@ -73,11 +86,22 @@ public class Shooting : MonoBehaviour
         _timeBetweenShoots = _shootDelay;
         //_animator.SetBool("ShotCheck", true);
     }
-
-    private void Reload()
+    public void ShotStop()
+    {
+        shooting = false;
+    }
+    private void reloadStart()
+    {
+        reloading = true;
+        gunReloading.reload();
+    }
+    public void reloadEnd()
     {
         _currentAmmoAmount = _maxAmmoAmount;
+        //Debug.Log("reloadEND");
+        //OnAmmoAmountChanged?.Invoke(_currentAmmoAmount, _maxAmmoAmount);
         //_animator.SetBool("PressReload", true);
-        
+        reloading = false;
+        OnAmmoAmountChanged?.Invoke(_currentAmmoAmount, _maxAmmoAmount);
     }
 }
