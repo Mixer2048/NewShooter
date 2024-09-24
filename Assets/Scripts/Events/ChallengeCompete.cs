@@ -14,6 +14,8 @@ public class ChallengeCompete : MonoBehaviour
     {
         _defeatedTargets++;
 
+        Debug.Log(_defeatedTargets);
+
         if (_defeatedTargets == _targetsAmount)
             AllTargetsDefeated();
     }
