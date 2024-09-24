@@ -11,7 +11,6 @@ public class ShotAnimation : MonoBehaviour
 
     Animator animator;
 
-    //void Start() => animator = GetComponent<Animator>();
     void Start()
     {
         muzzleFlash.Stop();

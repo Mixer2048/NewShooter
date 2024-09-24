@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 8748018056802972511}
   - component: {fileID: 5975527655996838852}
   - component: {fileID: 1275005040537049206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +190,89 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4738260860169470288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560407539852672480}
+  - component: {fileID: 1240277677666240973}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560407539852672480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738260860169470288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4356179947745670334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1240277677666240973
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738260860169470288}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &6731518418301862061
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +288,6 @@ GameObject:
   - component: {fileID: 1231509303666449418}
   - component: {fileID: 7384251709743610510}
   - component: {fileID: 6048457996787447352}
-  - component: {fileID: 3936642555242712347}
   - component: {fileID: 2903017421311604465}
   m_Layer: 0
   m_Name: Player
@@ -360,39 +442,6 @@ MonoBehaviour:
   eyes: {fileID: 8503461561583802099}
   xSens: 100
   ySens: 100
---- !u!114 &3936642555242712347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6731518418301862061}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae04db746da06f9469f4d52efcdde9ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnAmmoAmountChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AmmoCountChanger, Assembly-CSharp
-        m_MethodName: ChangeAmmoAmount
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _mainCamera: {fileID: 4895794767133122740}
-  _impulse: 2.4
-  _shootDelay: 0.1
-  _maxAmmoAmount: 30
-  shotAnimation: {fileID: 0}
-  gunReloading: {fileID: 0}
 --- !u!114 &2903017421311604465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +485,8 @@ Transform:
   m_LocalPosition: {x: 0.005380843, y: -0.4620201, z: -3.24}
   m_LocalScale: {x: 2.2222223, y: 5.2631583, z: 10}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1560407539852672480}
   m_Father: {fileID: 8503461561583802099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4895794767133122740
@@ -478,7 +528,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -507,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678917553560206094}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242016801239310410}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CartridgePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,6 +622,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4560e456c4ec0d3418fffd368dd1e7ff, type: 3}
       propertyPath: m_Name
       value: FX_MuzzleFlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4560e456c4ec0d3418fffd368dd1e7ff, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4560e456c4ec0d3418fffd368dd1e7ff, type: 3}
       propertyPath: m_LocalScale.x
@@ -666,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0e2f4852e0b389746a89f6ff31b49486, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0e2f4852e0b389746a89f6ff31b49486, type: 3}
       propertyPath: m_LocalScale.x
@@ -804,8 +858,8 @@ MonoBehaviour:
         m_CallState: 2
   _mainCamera: {fileID: 4895794767133122740}
   _impulse: 2.4
-  _shootDelay: 0.2
   _maxAmmoAmount: 30
+  ShootClip: {fileID: 7400000, guid: 3ee5e1cb65ae02c43a934662d94f59ac, type: 2}
   shotAnimation: {fileID: 5258813084636097270}
   gunReloading: {fileID: 2043928528689911184}
 --- !u!114 &5258813084636097270

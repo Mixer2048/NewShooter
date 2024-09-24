@@ -122,6 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosion: {fileID: 19800006, guid: e0609132424a24844b1d53ad3d704fd9, type: 3}
+  _explosionImpulse: 4
+  _explosionRadius: 3
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _drawGizmo: 0
 --- !u!114 &3987133372346543934
 MonoBehaviour:
   m_ObjectHideFlags: 0
