@@ -323,10 +323,9 @@ GameObject:
   - component: {fileID: 5070147299225143943}
   - component: {fileID: 8778259224658447512}
   - component: {fileID: 5813037235181570737}
-  - component: {fileID: 7026064017580172187}
   - component: {fileID: 2408704163505922418}
   - component: {fileID: 3428691471030869800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sihouette
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -1025,33 +1024,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &7026064017580172187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7375784878683582946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c60641a3711c264eba3226f1f1f873d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetHitted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8066442609491219143}
-        m_TargetAssemblyTypeName: SimpleTargetAnimation, Assembly-CSharp
-        m_MethodName: Defeated
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2408704163505922418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,9 +1039,9 @@ MonoBehaviour:
   onTargetHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7026064017580172187}
-        m_TargetAssemblyTypeName: SimpleTarget, Assembly-CSharp
-        m_MethodName: OnHit
+      - m_Target: {fileID: 8066442609491219143}
+        m_TargetAssemblyTypeName: SimpleTargetAnimation, Assembly-CSharp
+        m_MethodName: Defeated
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
