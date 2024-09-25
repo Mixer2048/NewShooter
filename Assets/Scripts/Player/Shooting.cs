@@ -3,85 +3,68 @@ using UnityEngine.Events;
 
 public class Shooting : MonoBehaviour
 {
-    public UnityEvent<int, int> OnAmmoAmountChanged;
+    public UnityEvent<int, int, int> OnAmmoAmountChanged;
 
-    [SerializeField] private Camera _mainCamera;
-    [SerializeField, Range(0.1f, 30f)] private float _impulse = 2.4f;
-    //[SerializeField, Range(0.1f, 30f)] private float _shootDelay = 5f;
-    [SerializeField, Range(1, 100)] private int _maxAmmoAmount = 30;
-
+    [SerializeField] private GunLogic _leftGun;
+    [SerializeField] private GunLogic _rightGun;
     [SerializeField] private AnimationClip ShootClip;
+
+    public int StockAmmo = 20;
+    public int CurrentAmmo = 10;
+    public int MaxAmmo = 10;
+
     private float ClipDuration;
-    //float timeBetweenReloads;
-
-    private int _currentAmmoAmount;
-    private float _timeBetweenShoots = 0f;
-
-    private bool reloading = false;
-
-    public ShotAnimation shotAnimation;
-    public GunReloading gunReloading;
+    private bool shootLeft = false;
+    private float _timeBetweenShoots = 1f;
 
     private void Start()
     {
-        _currentAmmoAmount = _maxAmmoAmount;
-        ClipDuration = ShootClip.length;
+        ClipDuration = ShootClip.length - 0.2f;
         _timeBetweenShoots = ClipDuration;
     }
 
     private void Update()
     {
-        int previousAmmoAmount = _currentAmmoAmount;
-
         _timeBetweenShoots -= Time.deltaTime;
 
-        if (_timeBetweenShoots < 0)
-        {   
-            if (Input.GetMouseButton(0) && _currentAmmoAmount > 0 && reloading == false)
-                Shot();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R) && _currentAmmoAmount < _maxAmmoAmount && reloading == false)
-            reloadStart();
-
-        //Debug.Log(previousAmmoAmount != _currentAmmoAmount);
-        if (previousAmmoAmount != _currentAmmoAmount)
-            OnAmmoAmountChanged?.Invoke(_currentAmmoAmount, _maxAmmoAmount);
-    }
-
-    private void Shot()
-    {
-        shotAnimation.play();
-        Ray ray = new Ray(_mainCamera.transform.position, _mainCamera.transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
+        if (Input.GetMouseButton(0) && _timeBetweenShoots < 0 && CurrentAmmo > 0)
         {
-            if (hit.transform.CompareTag("Target"))
-                hit.transform.GetComponent<TargetHit>().targetHit(transform.position, hit.point, _impulse);
+            Debug.Log(shootLeft);
+            if (!shootLeft)
+            {
+                Debug.Log("right");
+                _rightGun.Shot();
+                shootLeft = true;
+            }
+            else
+            {
+                Debug.Log("left");
+                _leftGun.Shot();
+                shootLeft = false;
+            }
 
-            ImpactEffect impactEffect = hit.transform.GetComponent<ImpactEffect>();
+            OnAmmoAmountChanged?.Invoke(CurrentAmmo, MaxAmmo, StockAmmo);
 
-            if (impactEffect != null)
-                impactEffect.play(hit.point, hit.normal);
+            _timeBetweenShoots = ClipDuration;
         }
 
-        _currentAmmoAmount--;
-        _timeBetweenShoots = ClipDuration;
+        if (Input.GetKeyDown(KeyCode.R) && CurrentAmmo < MaxAmmo && StockAmmo > 0)
+        {
+            _leftGun.reloadStart();
+            _rightGun.reloadStart();
+
+        }
     }
 
-    private void reloadStart()
+    public void ReloadEnd()
     {
-        reloading = true;
-        gunReloading.reload();
-    }
-    public void reloadEnd()
-    {
-        _currentAmmoAmount = _maxAmmoAmount;
-        //Debug.Log("reloadEND");
-        //OnAmmoAmountChanged?.Invoke(_currentAmmoAmount, _maxAmmoAmount);
-        //_animator.SetBool("PressReload", true);
-        reloading = false;
-        OnAmmoAmountChanged?.Invoke(_currentAmmoAmount, _maxAmmoAmount);
+        int reloadAmmo = CurrentAmmo - MaxAmmo;
+        StockAmmo += reloadAmmo;
+        CurrentAmmo -= reloadAmmo;
+
+        OnAmmoAmountChanged?.Invoke(CurrentAmmo, MaxAmmo, StockAmmo);
+
+        _leftGun.reloadEnd();
+        _rightGun.reloadEnd();
     }
 }

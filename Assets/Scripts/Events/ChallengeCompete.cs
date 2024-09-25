@@ -26,7 +26,6 @@ public class ChallengeCompete : MonoBehaviour
     {
         Collider[] targets = Physics.OverlapBox(transform.position, _challengeBorder, Quaternion.identity, _targetLayer);
         _targetsAmount = targets.Length;
-        Debug.Log(_targetsAmount);
     }
 
     private void OnDrawGizmos()
